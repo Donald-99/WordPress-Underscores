@@ -29,7 +29,7 @@ if ( ! function_exists( 'pg_demo_theme_setup' ) ) :
 		 */
 		load_theme_textdomain( 'pg-demo-theme', get_template_directory() . '/languages' );
 
-		// Add default posts and comments RSS feed links to head.
+		// Add default posts and comments RSS feed links to head.		
 		add_theme_support( 'automatic-feed-links' );
 
 		/*
@@ -103,6 +103,14 @@ if ( ! function_exists( 'pg_demo_theme_setup' ) ) :
 	}
 endif;
 add_action( 'after_setup_theme', 'pg_demo_theme_setup' );
+
+//adding css and js files using action hook
+//pg_demo_theme_enqueue_script() or pg_demo_theme_enqueue_style()
+function add_theme_scripts(){
+	pg_demo_theme_enqueue_style('main-stylesheet',get_stylesheet_uri());
+}
+
+add_action('pg_demo_theme_enqueue_scripts','add_theme_scripts');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
